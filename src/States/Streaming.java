@@ -5,9 +5,9 @@ import PhoneContext.Phone;
 /**
  * Created by Eddie on 2016-10-05.
  */
-public class Busy implements PhoneState {
+public class Streaming implements PhoneState {
     private Phone phone;
-    public Busy(Phone phone) {
+    public Streaming(Phone phone) {
         this.phone = phone;
     }
 

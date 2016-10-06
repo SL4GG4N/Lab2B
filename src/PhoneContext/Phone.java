@@ -10,9 +10,9 @@ public class Phone {
 
     public Phone() {
         available = new Available(this);
-        busy = new Busy(this);
-        call = new Call(this);
-        incoming = new Incoming(this);
+        busy = new Streaming(this);
+        call = new Calling(this);
+        incoming = new GetCalled(this);
         ready = new Ready(this);
         currentState = available;
 
