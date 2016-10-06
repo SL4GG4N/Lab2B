@@ -1,65 +1,40 @@
 package PhoneContext;
 
-import States.*;
+import States.Available;
+import States.Calling;
+import States.PhoneState;
 
 /**
- * Created by Eddie on 2016-10-05.
+ * Created by Eddie on 2016-10-06.
  */
 public class Phone {
-    private PhoneState available, busy, call, incoming, ready, currentState;
+    private PhoneState current;
 
-    public Phone() {
-        available = new Available(this);
-        busy = new Streaming(this);
-        call = new Calling(this);
-        incoming = new GetCalled(this);
-        ready = new Ready(this);
-        currentState = available;
-
+    public Phone(){
+        current = new Available();
     }
 
-    public void setCurrentState(PhoneState nextState){
-        currentState = nextState;
+    public void Ack(){
+        current = current.Ack();
     }
 
-    public String sendACK(){
-        return currentState.ACK();
+    public void Invite(String phone_number){
+        current = current.Invite();
     }
 
-    public String makeEstablishment(){
-        return currentState.Establish();
+    public void Tro(){
+        current = current.Tro();
     }
 
-    public String makeCall(){
-        return currentState.MakeCall();
+    public void Ok(){
+        current = current.Ok();
     }
 
-    public String sendBye(){
-        return currentState.BYE();
+    public void Bye(){
+        current = current.Bye();
     }
 
-    public String sendOK(){
-        return currentState.OK();
-    }
-
-
-    public PhoneState getAvailable() {
-        return available;
-    }
-
-    public PhoneState getBusy() {
-        return busy;
-    }
-
-    public PhoneState getCall() {
-        return call;
-    }
-
-    public PhoneState getIncoming() {
-        return incoming;
-    }
-
-    public PhoneState getReady() {
-        return ready;
+    public PhoneState getCurrent() {
+        return current;
     }
 }

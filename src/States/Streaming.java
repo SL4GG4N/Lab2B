@@ -1,40 +1,44 @@
 package States;
 
-import PhoneContext.Phone;
+
 
 /**
  * Created by Eddie on 2016-10-05.
  */
 public class Streaming implements PhoneState {
-    private Phone phone;
-    public Streaming(Phone phone) {
-        this.phone = phone;
+    private String stateName;
+
+    public Streaming() {
+        stateName = "STREAMING";
     }
 
     @Override
-    public String MakeCall() {
-        return null;
+    public String getStateName() {
+        return stateName;
     }
 
     @Override
-    public String Establish() {
-        return null;
+    public PhoneState Invite() {
+        return this;
     }
 
     @Override
-    public String ACK() {
-        return null;
+    public PhoneState Tro() {
+        return this;
     }
 
     @Override
-    public String BYE() {
-        phone.setCurrentState(phone.getAvailable());
-        System.out.println("AVAILABLE");
-        return null;
+    public PhoneState Ack() {
+        return this;
     }
 
     @Override
-    public String OK() {
-        return null;
+    public PhoneState Bye() {
+        return new WaitForOk();
+    }
+
+    @Override
+    public PhoneState Ok() {
+        return new Available();
     }
 }

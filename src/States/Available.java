@@ -1,47 +1,49 @@
 package States;
 
 
-import PhoneContext.Phone;
+import java.sql.Connection;
 
 /**
  * Created by Eddie on 2016-10-05.
  */
 public class Available implements PhoneState {
-    private Phone phone;
-    public Available(Phone phone) {
-        this.phone = phone;
+    private String stateName;
+    public Available() {
+        stateName = "AVAIABLE";
     }
 
-
-    @Override
-    public String MakeCall() {
-        System.out.println("CALLING...");
-        System.out.println("STATE: CALL");
-        phone.setCurrentState(phone.getCall());
-        return "SENDING INVITE";
+    public String getStateName() {
+        return stateName;
     }
 
     @Override
-    public String Establish() {
-        System.out.println("WRONG STATE TO CALL: Establish");
-        return "Establish ERROR";
+    public PhoneState Invite() {
+        //connect
+
+
+
+
+
+        return new Calling();
     }
 
     @Override
-    public String ACK() {
-        System.out.println("WRONG STATE TO CALL: ACK");
-        return "ACK ERROR";
+    public PhoneState Tro() {
+        return this;
     }
 
     @Override
-    public String BYE() {
-        System.out.println("WRONG STATE TO CALL: BYE");
-        return "BYE ERROR";
+    public PhoneState Ack() {
+        return this;
     }
 
     @Override
-    public String OK() {
-        System.out.println("WRONG STATE TO CALL: OK");
-        return "OK ERROR";
+    public PhoneState Bye() {
+        return this;
+    }
+
+    @Override
+    public PhoneState Ok() {
+        return this;
     }
 }

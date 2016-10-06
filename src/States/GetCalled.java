@@ -1,42 +1,42 @@
 package States;
 
-import PhoneContext.Phone;
+
 
 /**
  * Created by Eddie on 2016-10-05.
  */
 public class GetCalled implements PhoneState {
-    private Phone phone;
-    public GetCalled(Phone phone) {
-        this.phone = phone;
+    private String stateName;
+    public GetCalled() {
+        stateName = "GET CALLED";
+    }
+
+    public String getStateName() {
+        return stateName;
     }
 
     @Override
-    public String MakeCall() {
-        System.out.println("WRONG STATE TO CALL: MakeCall");
-        return "MakeCall ERROR";
+    public PhoneState Invite() {
+        return this;
     }
 
     @Override
-    public String Establish() {
-        phone.setCurrentState(phone.getReady());
-        System.out.println("READY");
-        return "Establish";
+    public PhoneState Tro() {
+        return new Streaming();
     }
 
     @Override
-    public String ACK() {
-        System.out.println("WRONG STATE TO CALL: ACK");
-        return "ACK ERROR";
+    public PhoneState Ack() {
+        return this;
     }
 
     @Override
-    public String BYE() {
-        return "WRONG STATE TO CALL; BYE";
+    public PhoneState Bye() {
+        return this;
     }
 
     @Override
-    public String OK() {
-        return "WRONG STATE TO CALL: OK";
+    public PhoneState Ok() {
+        return this;
     }
 }
