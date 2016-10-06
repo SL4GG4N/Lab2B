@@ -1,6 +1,8 @@
 package States;
 
 
+import PhoneContext.Phone;
+
 /**
  * Created by Eddie on 2016-10-05.
  */
@@ -14,6 +16,7 @@ public class Available implements PhoneState {
     @Override
     public String MakeCall() {
         System.out.println("CALLING...");
+        System.out.println("STATE: CALL");
         phone.setCurrentState(phone.getCall());
         return "SENDING INVITE";
     }
@@ -32,11 +35,13 @@ public class Available implements PhoneState {
 
     @Override
     public String BYE() {
-        return null;
+        System.out.println("WRONG STATE TO CALL: BYE");
+        return "BYE ERROR";
     }
 
     @Override
     public String OK() {
-        return null;
+        System.out.println("WRONG STATE TO CALL: OK");
+        return "OK ERROR";
     }
 }

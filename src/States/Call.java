@@ -1,5 +1,7 @@
 package States;
 
+import PhoneContext.Phone;
+
 /**
  * Created by Eddie on 2016-10-05.
  */
@@ -11,14 +13,14 @@ public class Call implements PhoneState {
 
     @Override
     public String MakeCall() {
-        System.out.println("WRONG STATE TO CALL: MakeCall");
+        System.out.println("CALL WITHIN A CALL IS NOT POSSIBLE");
         return "MakeCall ERROR";
     }
 
     @Override
     public String Establish() {
-        phone.setCurrentState(phone.getReady());
-        System.out.println("READY");
+        phone.setCurrentState(phone.getBusy());
+        System.out.println("BUSY");
         return "Establish";
     }
 
