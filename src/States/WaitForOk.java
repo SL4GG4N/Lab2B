@@ -38,4 +38,15 @@ public class WaitForOk implements PhoneState {
     public PhoneState Ok() {
         return this;
     }
+
+    @Override
+    public PhoneState RecieveAck() {
+        return this;
+    }
+
+    @Override
+    public PhoneState RecieveOk() {
+        // vi får in en OK
+        return new Available();
+    }
 }

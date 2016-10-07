@@ -27,6 +27,11 @@ public class Calling implements PhoneState {
 
     @Override
     public PhoneState Ack() {
+        /*TODO
+        om vi får en tro
+        SKICKA ACK signal
+         */
+
         return new Streaming();
     }
 
@@ -37,6 +42,16 @@ public class Calling implements PhoneState {
 
     @Override
     public PhoneState Ok() {
+        return this;
+    }
+
+    @Override
+    public PhoneState RecieveAck() {
+        return this;
+    }
+
+    @Override
+    public PhoneState RecieveOk() {
         return this;
     }
 }

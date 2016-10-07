@@ -18,10 +18,9 @@ public class Available implements PhoneState {
 
     @Override
     public PhoneState Invite() {
-        //connect
-
-
-
+        /* TODO
+        SEND INVITE HÄR
+         */
 
 
         return new Calling();
@@ -29,7 +28,11 @@ public class Available implements PhoneState {
 
     @Override
     public PhoneState Tro() {
-        return this;
+        /* TODO
+        OM VI FÅR EN INVITE
+        SKICKA TRO
+         */
+        return new GetCalled();
     }
 
     @Override
@@ -44,6 +47,16 @@ public class Available implements PhoneState {
 
     @Override
     public PhoneState Ok() {
+        return this;
+    }
+
+    @Override
+    public PhoneState RecieveAck() {
+        return this;
+    }
+
+    @Override
+    public PhoneState RecieveOk() {
         return this;
     }
 }

@@ -10,4 +10,6 @@ public interface PhoneState {
     PhoneState Ack();
     PhoneState Bye();
     PhoneState Ok();
+    PhoneState RecieveAck();
+    PhoneState RecieveOk();
 }

@@ -22,7 +22,7 @@ public class GetCalled implements PhoneState {
 
     @Override
     public PhoneState Tro() {
-        return new Streaming();
+        return this;
     }
 
     @Override
@@ -37,6 +37,20 @@ public class GetCalled implements PhoneState {
 
     @Override
     public PhoneState Ok() {
+        return this;
+    }
+
+    @Override
+    public PhoneState RecieveAck() {
+        /*TODO
+        Om vi får en ACK
+        GÅ IN I STREAMING
+         */
+        return new Streaming();
+    }
+
+    @Override
+    public PhoneState RecieveOk() {
         return this;
     }
 }
