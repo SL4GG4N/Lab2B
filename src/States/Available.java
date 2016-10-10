@@ -24,7 +24,7 @@ public class Available implements PhoneState {
         SEND INVITE HÄR
          */
         phoneConnection.SendMessage("INVITE");
-        return new Calling();
+        return new Calling(phoneConnection);
     }
 
     @Override
@@ -33,10 +33,18 @@ public class Available implements PhoneState {
         OM VI FÅR EN INVITE
         SKICKA TRO
          */
-        phoneConnection.SendMessage("TRO");
+        //skapa
+        //bygga upp TRO-meddelandet
+
+        phoneConnection.SendMessage("TRO massa annat skit som behövs för att skapa UDP-koppling");
+
+
+
         System.out.println("BAJS");
 
+        //if we answer
         return new GetCalled();
+        //else return this
     }
 
     @Override
@@ -64,3 +72,6 @@ public class Available implements PhoneState {
         return this;
     }
 }
+
+//exempel på meddelande INVITE
+// INVITE?SENDERHOSTNAME?RECIEVERHOSTNAME?PORT

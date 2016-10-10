@@ -25,25 +25,20 @@ public class Com {
             server_socket = new ServerSocket(_PORT);
             System.out.println("Phone created, waiting for socket accept....");
 
-            UserInterface ui = new UserInterface(phone,connection);
+            UserInterface ui = new UserInterface(phone, connection);
 
             while (running) {
-                Socket client_socket = null;
-                //System.out.println("PHONE connecting.....");
-                client_socket = server_socket.accept();
-                System.out.println("Accept recieved");
+                // socket är satt här
+                Socket client_socket = server_socket.accept();
 
-                if (connection == null || phone.getCurrent().getStateName().equals("AVAILABLE")) {
-                    connection = new PhoneConnection(client_socket, phone);
-                } else {
-                    phone.CheckStates("INVITE", new PhoneConnection(client_socket));
-                }
+                //lyssna efter meddelanden;
 
+                //skicka meddelandet till checkstates
+                phone.CheckStates("INVITE", new PhoneConnection(client_socket));
             }
-
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 server_socket.close();
             } catch (IOException e) {

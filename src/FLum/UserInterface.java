@@ -23,7 +23,6 @@ public class UserInterface implements Runnable {
 
     @Override
     public void run() {
-
         Scanner input = new Scanner(System.in);
         while (!shut_down) {
 

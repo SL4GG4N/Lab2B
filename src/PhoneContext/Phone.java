@@ -16,6 +16,7 @@ public class Phone {
     public Phone(){
         current = new Available();
     }
+
     public synchronized void CheckStates(String msg, PhoneConnection phoneConnection){
         switch (msg){
             case "CALL":    current = current.Invite(phoneConnection); break;
@@ -25,6 +26,7 @@ public class Phone {
             case "ACK":     current = current.RecieveAck(phoneConnection); break;
             case "BYE":     current = current.Ok(phoneConnection); break;
             case "OK":      current = current.RecieveOk(phoneConnection); break;
+            default:        phoneConnection.EndSession();
         }
     }
 

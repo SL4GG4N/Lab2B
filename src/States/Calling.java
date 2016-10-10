@@ -8,8 +8,10 @@ import FLum.PhoneConnection;
  */
 public class Calling implements PhoneState {
     private String stateName;
-    public Calling() {
+    private PhoneConnection connection;
+    public Calling(PhoneConnection connection) {
         stateName = "CALLING";
+        this.connection = connection;
     }
 
     public String getStateName() {
@@ -34,7 +36,7 @@ public class Calling implements PhoneState {
         om vi får en tro
         SKICKA ACK signal
          */
-        phoneConnection.SendMessage("ACK");
+        connection.SendMessage("ACK");
         return new Streaming();
     }
 
