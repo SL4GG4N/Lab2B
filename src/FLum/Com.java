@@ -12,7 +12,7 @@ import java.net.Socket;
 public class Com {
     //private static ArrayList<ClientHandler> clientHandlers;
     private static boolean running;
-    private final int _PORT = 5003;
+    private final int _PORT = 5002;
     private PhoneConnection connection;
     private Phone phone;
 
