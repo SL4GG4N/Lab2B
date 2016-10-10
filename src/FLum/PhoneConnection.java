@@ -58,7 +58,10 @@ public class PhoneConnection implements Runnable {
     }
 
     public void SendMessage(String msg) {
-        output_phone.println(msg);
+
+        if (output_phone != null)
+            output_phone.println(msg);
+
     }
 
     @Override
@@ -69,7 +72,7 @@ public class PhoneConnection implements Runnable {
 
             String userInput;
             while (!quit && (userInput = input_phone.readLine()) != null) {
-                System.out.println(userInput);
+                //System.out.println(userInput);
                 phone.CheckStates(userInput, this);
             }
         } catch (Exception e) {

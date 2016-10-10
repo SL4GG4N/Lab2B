@@ -11,6 +11,7 @@ public class Streaming implements PhoneState {
 
     public Streaming() {
         stateName = "STREAMING";
+        System.out.println("STATE: " + stateName);
     }
 
     @Override

@@ -9,6 +9,7 @@ public class WaitForOk implements PhoneState {
     private String stateName;
     public WaitForOk() {
         stateName = "WAIT FOR OK";
+        System.out.println("STATE: " + stateName);
     }
 
     @Override

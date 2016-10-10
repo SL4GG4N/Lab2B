@@ -12,6 +12,7 @@ public class Calling implements PhoneState {
     public Calling(PhoneConnection connection) {
         stateName = "CALLING";
         this.connection = connection;
+        System.out.println("STATE: " + stateName);
     }
 
     public String getStateName() {
