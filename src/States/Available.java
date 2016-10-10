@@ -14,7 +14,7 @@ public class Available implements PhoneState {
 
     public Available() {
         stateName = "AVAILABLE";
-        System.out.println("STATE: " + stateName);
+        //System.out.println("STATE: " + stateName);
     }
 
     public String getStateName() {

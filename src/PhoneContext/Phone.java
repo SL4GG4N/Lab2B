@@ -19,6 +19,8 @@ public class Phone {
 
     public synchronized void CheckStates(String msg, PhoneConnection phoneConnection){
         switch (msg){
+            //VÄRLDENS STÖRSTA BUGG i SWITCH CASE satsen.
+            case "STATE":   System.out.println("CURRENT STATE: " + getCurrent().getStateName()); break;
             case "CALL":    current = current.Invite(phoneConnection); break;
             case "CLOSE":   current = current.Bye(phoneConnection); break;
             case "INVITE":  current = current.Tro(phoneConnection); break;

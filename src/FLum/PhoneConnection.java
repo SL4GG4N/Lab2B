@@ -26,19 +26,6 @@ public class PhoneConnection implements Runnable {
         new Thread(this).start();
     }
 
-    public PhoneConnection(Socket client_socket) {
-        this.client_socket = client_socket;
-        try {
-            output_phone = new PrintWriter(client_socket.getOutputStream(), true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public PhoneConnection() {
-
-    }
-
     public void EndSession(){
         if (output_phone != null) {
             output_phone.close();
@@ -83,6 +70,7 @@ public class PhoneConnection implements Runnable {
             }
         } catch (Exception e) {
             System.out.println("Could not connect/lost connection");
+            phone = new Phone(); //VARFÖR FUNGERAR INTE DENNA JÄVULEN.
             e.printStackTrace();
         } finally {
             output_phone.close();
@@ -98,5 +86,9 @@ public class PhoneConnection implements Runnable {
             }
             System.out.println("ClientHandler closed connection");
         }
+    }
+
+    public Socket getClient_socket() {
+        return client_socket;
     }
 }

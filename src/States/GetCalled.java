@@ -26,8 +26,12 @@ public class GetCalled implements PhoneState {
 
     @Override
     public PhoneState Tro(PhoneConnection phoneConnection) {
-        phoneConnection.SendMessage("BUSY");
-        phoneConnection.EndSession();
+        //Todo check if the phone connection is the same.
+
+        if (!phoneConnection.getClient_socket().equals(connection.getClient_socket())){
+            phoneConnection.SendMessage("BUSY");
+            phoneConnection.EndSession();
+        }
         return this;
     }
 

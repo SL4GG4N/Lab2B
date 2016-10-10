@@ -28,13 +28,13 @@ public class UserInterface implements Runnable {
 
            // System.out.print("Call <NUMBER>: ");
             String usr_text = input.nextLine();
-
+            Socket socket = null;
             if (usr_text.toUpperCase().equals("SHUTDOWN")){
                 shut_down = true;
             }else if (usr_text.toUpperCase().contains("CALL")){
                 try {
                     usr_text = usr_text.substring(usr_text.lastIndexOf(" ") + 1);
-                    Socket socket = new Socket(usr_text, 5005);
+                    socket = new Socket(usr_text, 5005);
                     System.out.println("SOCKET BUILDED");
                     connection = new PhoneConnection(socket, phone);
                     Thread.sleep(3000);
@@ -45,6 +45,8 @@ public class UserInterface implements Runnable {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+            }else if (usr_text.toUpperCase().contains("BYE")) {
+                //phone.CheckStates("BYE",);
             }
         }
 
