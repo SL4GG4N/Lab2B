@@ -69,6 +69,7 @@ public class PhoneConnection implements Runnable {
 
             String userInput;
             while (!quit && (userInput = input_phone.readLine()) != null) {
+                System.out.println(userInput);
                 phone.CheckStates(userInput, this);
             }
         } catch (Exception e) {
@@ -86,6 +87,7 @@ public class PhoneConnection implements Runnable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            System.out.println("bajskuken");
             System.out.println("ClientHandler closed connection");
         }
     }

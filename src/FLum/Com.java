@@ -12,8 +12,8 @@ import java.net.Socket;
 public class Com {
     //private static ArrayList<ClientHandler> clientHandlers;
     private static boolean running;
-    private final int _PORT = 5002;
-    PhoneConnection connection;
+    private final int _PORT = 5003;
+    private PhoneConnection connection;
     private Phone phone;
 
     public void Open() {
@@ -24,6 +24,8 @@ public class Com {
         try {
             server_socket = new ServerSocket(_PORT);
             System.out.println("Phone created, waiting for socket accept....");
+
+            UserInterface ui = new UserInterface(phone,connection);
 
             while (running) {
                 Socket client_socket = null;
