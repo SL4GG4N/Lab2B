@@ -1,6 +1,7 @@
 package States;
 
 
+import FLum.PhoneConnection;
 
 /**
  * Created by Eddie on 2016-10-05.
@@ -16,32 +17,34 @@ public class GetCalled implements PhoneState {
     }
 
     @Override
-    public PhoneState Invite() {
+    public PhoneState Invite(PhoneConnection phoneConnection) {
         return this;
     }
 
     @Override
-    public PhoneState Tro() {
+    public PhoneState Tro(PhoneConnection phoneConnection) {
+        phoneConnection.SendMessage("BUSY");
+        phoneConnection.EndSession();
         return this;
     }
 
     @Override
-    public PhoneState Ack() {
+    public PhoneState Ack(PhoneConnection phoneConnection) {
         return this;
     }
 
     @Override
-    public PhoneState Bye() {
+    public PhoneState Bye(PhoneConnection phoneConnection) {
         return this;
     }
 
     @Override
-    public PhoneState Ok() {
+    public PhoneState Ok(PhoneConnection phoneConnection) {
         return this;
     }
 
     @Override
-    public PhoneState RecieveAck() {
+    public PhoneState RecieveAck(PhoneConnection phoneConnection) {
         /*TODO
         Om vi får en ACK
         GÅ IN I STREAMING
@@ -50,7 +53,7 @@ public class GetCalled implements PhoneState {
     }
 
     @Override
-    public PhoneState RecieveOk() {
+    public PhoneState RecieveOk(PhoneConnection phoneConnection) {
         return this;
     }
 }

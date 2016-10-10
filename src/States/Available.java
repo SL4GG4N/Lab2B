@@ -1,6 +1,8 @@
 package States;
 
 
+import FLum.PhoneConnection;
+
 import java.sql.Connection;
 
 /**
@@ -9,7 +11,7 @@ import java.sql.Connection;
 public class Available implements PhoneState {
     private String stateName;
     public Available() {
-        stateName = "AVAIABLE";
+        stateName = "AVAILABLE";
     }
 
     public String getStateName() {
@@ -17,46 +19,48 @@ public class Available implements PhoneState {
     }
 
     @Override
-    public PhoneState Invite() {
+    public PhoneState Invite(PhoneConnection phoneConnection) {
         /* TODO
         SEND INVITE HÄR
          */
-
-
+        phoneConnection.SendMessage("INVITE");
         return new Calling();
     }
 
     @Override
-    public PhoneState Tro() {
+    public PhoneState Tro(PhoneConnection phoneConnection) {
         /* TODO
         OM VI FÅR EN INVITE
         SKICKA TRO
          */
+        phoneConnection.SendMessage("TRO");
+        System.out.println("BAJS");
+
         return new GetCalled();
     }
 
     @Override
-    public PhoneState Ack() {
+    public PhoneState Ack(PhoneConnection phoneConnection) {
         return this;
     }
 
     @Override
-    public PhoneState Bye() {
+    public PhoneState Bye(PhoneConnection phoneConnection) {
         return this;
     }
 
     @Override
-    public PhoneState Ok() {
+    public PhoneState Ok(PhoneConnection phoneConnection) {
         return this;
     }
 
     @Override
-    public PhoneState RecieveAck() {
+    public PhoneState RecieveAck(PhoneConnection phoneConnection) {
         return this;
     }
 
     @Override
-    public PhoneState RecieveOk() {
+    public PhoneState RecieveOk(PhoneConnection phoneConnection) {
         return this;
     }
 }

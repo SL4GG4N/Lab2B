@@ -1,6 +1,7 @@
 package States;
 
 
+import FLum.PhoneConnection;
 
 /**
  * Created by Eddie on 2016-10-05.
@@ -18,46 +19,49 @@ public class Streaming implements PhoneState {
     }
 
     @Override
-    public PhoneState Invite(/* Skicka socket */) {
+    public PhoneState Invite(PhoneConnection phoneConnection) {
         return this;
     }
 
     @Override
-    public PhoneState Tro(/* Skicka socket */) {
+    public PhoneState Tro(PhoneConnection phoneConnection) {
+        phoneConnection.SendMessage("BUSY");
+        phoneConnection.EndSession();
         return this;
     }
 
     @Override
-    public PhoneState Ack(/* Skicka socket */) {
+    public PhoneState Ack(PhoneConnection phoneConnection) {
         return this;
     }
 
     @Override
-    public PhoneState Bye(/* Skicka socket */) {
+    public PhoneState Bye(PhoneConnection phoneConnection) {
         /* TODO
         SKICKA BYE SIGNAL
          */
-
+        phoneConnection.SendMessage("BYE");
         return new WaitForOk();
     }
 
     @Override
-    public PhoneState Ok(/* Skicka socket */) {
+    public PhoneState Ok(PhoneConnection phoneConnection) {
         /* TODO
         OM VI FÅR EN BYE
         SKICKA EN OK
         */
 
+        phoneConnection.SendMessage("OK");
         return new Available();
     }
 
     @Override
-    public PhoneState RecieveAck(/* Skicka ingen socket */) {
+    public PhoneState RecieveAck(PhoneConnection phoneConnection) {
         return this;
     }
 
     @Override
-    public PhoneState RecieveOk(/* Skicka ingen socket */) {
+    public PhoneState RecieveOk(PhoneConnection phoneConnection) {
         return this;
     }
 }

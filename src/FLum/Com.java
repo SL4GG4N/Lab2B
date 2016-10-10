@@ -1,4 +1,8 @@
-import java.io.IOException;
+package FLum;
+
+import PhoneContext.Phone;
+
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -9,44 +13,43 @@ public class Com {
     //private static ArrayList<ClientHandler> clientHandlers;
     private static boolean running;
     private final int _PORT = 5002;
+    PhoneConnection connection;
+    private Phone phone;
 
-    public void Open(){
+    public void Open() {
         running = true;
-
+        phone = new Phone();
         ServerSocket server_socket = null;
+
         try {
             server_socket = new ServerSocket(_PORT);
-            System.out.println("Server started....");
+            System.out.println("Phone created, waiting for socket accept....");
 
             while (running) {
                 Socket client_socket = null;
-                System.out.println("PHONE connecting.....");
+                //System.out.println("PHONE connecting.....");
                 client_socket = server_socket.accept();
-                System.out.println("PHONE connected " + client_socket.getInetAddress() + " " + client_socket.getPort());
+                System.out.println("Accept recieved");
 
-
-                //sockets.add(client_socket);
-                //clientHandlers.add(new ClientHandler(client_socket));
-
-                //System.out.println("Number of Clients connected: " + clientHandlers.size() + "\n\n");
+                if (connection == null || phone.getCurrent().getStateName().equals("AVAILABLE")) {
+                    connection = new PhoneConnection(client_socket, phone);
+                } else {
+                    phone.CheckStates("INVITE", new PhoneConnection(client_socket));
+                }
 
             }
+
         } catch (IOException e) {
-            System.out.println("Could not accept a client");
-        } finally {
+            e.printStackTrace();
+        }finally {
             try {
                 server_socket.close();
             } catch (IOException e) {
                 e.printStackTrace();
-                System.out.println("Could not close server socket");
             }
         }
-    }
-    public void Recieve(){
 
     }
-    public void Send(){
 
-    }
 
 }

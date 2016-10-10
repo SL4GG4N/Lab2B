@@ -1,5 +1,7 @@
 package States;
 
+import FLum.PhoneConnection;
+
 /**
  * Created by Eddie on 2016-10-06.
  */
@@ -15,37 +17,39 @@ public class WaitForOk implements PhoneState {
     }
 
     @Override
-    public PhoneState Invite() {
+    public PhoneState Invite(PhoneConnection phoneConnection) {
         return this;
     }
 
     @Override
-    public PhoneState Tro() {
+    public PhoneState Tro(PhoneConnection phoneConnection) {
+        phoneConnection.SendMessage("BUSY");
+        phoneConnection.EndSession();
         return this;
     }
 
     @Override
-    public PhoneState Ack() {
+    public PhoneState Ack(PhoneConnection phoneConnection) {
         return this;
     }
 
     @Override
-    public PhoneState Bye() {
+    public PhoneState Bye(PhoneConnection phoneConnection) {
         return this;
     }
 
     @Override
-    public PhoneState Ok() {
+    public PhoneState Ok(PhoneConnection phoneConnection) {
         return this;
     }
 
     @Override
-    public PhoneState RecieveAck() {
+    public PhoneState RecieveAck(PhoneConnection phoneConnection) {
         return this;
     }
 
     @Override
-    public PhoneState RecieveOk() {
+    public PhoneState RecieveOk(PhoneConnection phoneConnection) {
         // vi får in en OK
         return new Available();
     }

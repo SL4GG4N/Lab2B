@@ -1,15 +1,17 @@
 package States;
 
+import FLum.PhoneConnection;
+
 /**
  * Created by Eddie on 2016-10-05.
  */
 public interface PhoneState {
     String getStateName();
-    PhoneState Invite();
-    PhoneState Tro();
-    PhoneState Ack();
-    PhoneState Bye();
-    PhoneState Ok();
-    PhoneState RecieveAck();
-    PhoneState RecieveOk();
+    PhoneState Invite(PhoneConnection phoneConnection);
+    PhoneState Tro(PhoneConnection phoneConnection);
+    PhoneState Ack(PhoneConnection phoneConnection);
+    PhoneState Bye(PhoneConnection phoneConnection);
+    PhoneState Ok(PhoneConnection phoneConnection);
+    PhoneState RecieveAck(PhoneConnection phoneConnection);
+    PhoneState RecieveOk(PhoneConnection phoneConnection);
 }
