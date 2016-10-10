@@ -8,8 +8,9 @@ import FLum.PhoneConnection;
  */
 public class Streaming implements PhoneState {
     private String stateName;
-
-    public Streaming() {
+    private PhoneConnection connection;
+    public Streaming(PhoneConnection connection) {
+        this.connection = connection;
         stateName = "STREAMING";
         System.out.println("STATE: " + stateName);
     }
@@ -21,6 +22,7 @@ public class Streaming implements PhoneState {
 
     @Override
     public PhoneState Invite(PhoneConnection phoneConnection) {
+
         return this;
     }
 
@@ -52,7 +54,7 @@ public class Streaming implements PhoneState {
         SKICKA EN OK
         */
 
-        phoneConnection.SendMessage("OK");
+        connection.SendMessage("OK");
         return new Available();
     }
 

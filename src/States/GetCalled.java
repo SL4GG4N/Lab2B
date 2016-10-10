@@ -8,7 +8,9 @@ import FLum.PhoneConnection;
  */
 public class GetCalled implements PhoneState {
     private String stateName;
-    public GetCalled() {
+    private PhoneConnection connection;
+    public GetCalled(PhoneConnection connection) {
+        this.connection = connection;
         stateName = "GET CALLED";
         System.out.println("STATE: " + stateName);
     }
@@ -50,7 +52,8 @@ public class GetCalled implements PhoneState {
         Om vi får en ACK
         GÅ IN I STREAMING
          */
-        return new Streaming();
+        //connection.SendMessage("kuken");
+        return new Streaming(connection);
     }
 
     @Override

@@ -26,16 +26,15 @@ public class UserInterface implements Runnable {
         Scanner input = new Scanner(System.in);
         while (!shut_down) {
 
-            System.out.print("Call <NUMBER>: ");
+           // System.out.print("Call <NUMBER>: ");
             String usr_text = input.nextLine();
 
             if (usr_text.toUpperCase().equals("SHUTDOWN")){
                 shut_down = true;
             }else if (usr_text.toUpperCase().contains("CALL")){
                 try {
-                    System.out.println("USER TEXT: " + usr_text);
                     usr_text = usr_text.substring(usr_text.lastIndexOf(" ") + 1);
-                    Socket socket = new Socket(usr_text, 5010);
+                    Socket socket = new Socket(usr_text, 5005);
                     System.out.println("SOCKET BUILDED");
                     connection = new PhoneConnection(socket, phone);
                     Thread.sleep(3000);

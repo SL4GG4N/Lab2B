@@ -36,11 +36,13 @@ public class Com {
             while (running) {
                 // socket är satt här
                 Socket client_socket = server_socket.accept();
-
+                System.out.println("hello");
                 //lyssna efter meddelanden;
 
                 //skicka meddelandet till checkstates
-                phone.CheckStates("INVITE", new PhoneConnection(client_socket));
+                //phone.CheckStates("INVITE", new PhoneConnection(client_socket));
+                //fixme set ringing mode so that no one can interrupt
+                connection = new PhoneConnection(client_socket,phone);
             }
         } catch (IOException e) {
             e.printStackTrace();

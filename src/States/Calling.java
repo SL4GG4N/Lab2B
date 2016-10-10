@@ -37,8 +37,9 @@ public class Calling implements PhoneState {
         om vi får en tro
         SKICKA ACK signal
          */
+
         connection.SendMessage("ACK");
-        return new Streaming();
+        return new Streaming(connection);
     }
 
     @Override

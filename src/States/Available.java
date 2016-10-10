@@ -3,6 +3,7 @@ package States;
 
 import FLum.PhoneConnection;
 
+import java.net.Socket;
 import java.sql.Connection;
 
 /**
@@ -10,6 +11,7 @@ import java.sql.Connection;
  */
 public class Available implements PhoneState {
     private String stateName;
+
     public Available() {
         stateName = "AVAILABLE";
         System.out.println("STATE: " + stateName);
@@ -24,6 +26,7 @@ public class Available implements PhoneState {
         /* TODO
         SEND INVITE HÄR
          */
+
         phoneConnection.SendMessage("INVITE");
         return new Calling(phoneConnection);
     }
@@ -37,14 +40,10 @@ public class Available implements PhoneState {
         //skapa
         //bygga upp TRO-meddelandet
 
-        phoneConnection.SendMessage("TRO massa annat skit som behövs för att skapa UDP-koppling");
-
-
-
-        System.out.println("BAJS");
+        phoneConnection.SendMessage("TRO");
 
         //if we answer
-        return new GetCalled();
+        return new GetCalled(phoneConnection);
         //else return this
     }
 

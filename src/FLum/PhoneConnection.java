@@ -35,6 +35,10 @@ public class PhoneConnection implements Runnable {
         }
     }
 
+    public PhoneConnection() {
+
+    }
+
     public void EndSession(){
         if (output_phone != null) {
             output_phone.close();
@@ -59,6 +63,7 @@ public class PhoneConnection implements Runnable {
 
     public void SendMessage(String msg) {
 
+        System.out.println("SEND: " + msg);
         if (output_phone != null)
             output_phone.println(msg);
 
@@ -70,10 +75,11 @@ public class PhoneConnection implements Runnable {
             input_phone = new BufferedReader(new InputStreamReader(client_socket.getInputStream()));
             output_phone = new PrintWriter(client_socket.getOutputStream(), true);
 
-            String userInput;
-            while (!quit && (userInput = input_phone.readLine()) != null) {
+            String user_input;
+            while (!quit && (user_input = input_phone.readLine()) != null) {
                 //System.out.println(userInput);
-                phone.CheckStates(userInput, this);
+                System.out.println("RECEIVE: " + user_input);
+                phone.CheckStates(user_input, this);
             }
         } catch (Exception e) {
             System.out.println("Could not connect/lost connection");
@@ -90,7 +96,6 @@ public class PhoneConnection implements Runnable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            System.out.println("bajskuken");
             System.out.println("ClientHandler closed connection");
         }
     }
