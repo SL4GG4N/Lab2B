@@ -34,11 +34,17 @@ public class UserInterface implements Runnable {
                 shut_down = true;
             }else if (usr_text.toUpperCase().contains("CALL")){
                 try {
-                    Socket socket = new Socket(usr_text, 5003);
+                    System.out.println("USER TEXT: " + usr_text);
+                    usr_text = usr_text.substring(usr_text.lastIndexOf(" ") + 1);
+                    Socket socket = new Socket(usr_text, 5010);
+                    System.out.println("SOCKET BUILDED");
                     connection = new PhoneConnection(socket, phone);
-                    phone.CheckStates(usr_text.substring(usr_text.lastIndexOf(" ") + 1), connection);
+                    Thread.sleep(3000);
+                    phone.CheckStates("CALL", connection);
                 } catch (IOException e) {
                     System.out.println("USERINTERFACE:   Server is down or doesn't exist");
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }

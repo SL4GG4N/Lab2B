@@ -12,14 +12,20 @@ import java.net.Socket;
 public class Com {
     //private static ArrayList<ClientHandler> clientHandlers;
     private static boolean running;
-    private final int _PORT = 5002;
+    private final int _PORT;
     private PhoneConnection connection;
     private Phone phone;
+    private ServerSocket server_socket;
 
-    public void Open() {
+    public Com(int _PORT) {
+        this._PORT = _PORT;
         running = true;
         phone = new Phone();
-        ServerSocket server_socket = null;
+        server_socket = null;
+        Open();
+    }
+
+    public void Open() {
 
         try {
             server_socket = new ServerSocket(_PORT);
@@ -51,7 +57,12 @@ public class Com {
             }
         }
 
+
+
     }
+
+
+
 
 
 }

@@ -10,6 +10,7 @@ public class Calling implements PhoneState {
     private String stateName;
     public Calling() {
         stateName = "CALLING";
+        System.out.println("STATE: " + stateName);
     }
 
     public String getStateName() {
