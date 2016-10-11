@@ -32,26 +32,34 @@ public class Com {
 
     private void Open() {
 
+
         try {
             server_socket = new ServerSocket(_PORT);
-            System.out.println("Phone created, waiting for socket accept....");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        UserInterface ui = new UserInterface(phone);
+        while (running) {
 
-            UserInterface ui = new UserInterface(phone);
+            try {
 
-            while (running) {
+
+                System.out.println("Phone created, waiting for socket accept....");
                 // socket är satt här
                 Socket client_socket = server_socket.accept();
                 System.out.println("hello");
                 //fixme set ringing mode so that no one can interrupt
-                connection = new PhoneConnection(client_socket,phone);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                server_socket.close();
+                connection = new PhoneConnection(client_socket, phone);
+
             } catch (IOException e) {
                 e.printStackTrace();
+                System.out.println("kuken i fittan anus");
+            } finally {
+                try {
+                    server_socket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
