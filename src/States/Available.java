@@ -36,7 +36,7 @@ public class Available implements PhoneState {
             audioStreamUDP = new AudioStreamUDP();
             phoneConnection.setAudio(audioStreamUDP);
             String invite = "INVITE " + "EXAMPLE " + "EXAMPLE " +
-                    phoneConnection.getClient_socket().getRemoteSocketAddress() + " " +
+                    phoneConnection.getClient_socket().getInetAddress() + " " +
                     phoneConnection.getClient_socket().getInetAddress().getHostAddress() + " " +
                     audioStreamUDP.getLocalPort();
             phoneConnection.SendMessage(invite);
@@ -63,7 +63,7 @@ public class Available implements PhoneState {
                     phoneConnection.getStateMessage().getVoice_port());
             phoneConnection.setAudio(audioStreamUDP);
             String tro = "TRO " + "EXAMPLE " + "EXAMPLE " +
-                    phoneConnection.getClient_socket().getRemoteSocketAddress() + " " +
+                    phoneConnection.getClient_socket().getInetAddress()+ " " +
                     phoneConnection.getClient_socket().getInetAddress().getHostAddress() + " " +
                     audioStreamUDP.getLocalPort();
             phoneConnection.SendMessage(tro);
