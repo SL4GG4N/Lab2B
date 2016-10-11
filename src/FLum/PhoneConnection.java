@@ -70,7 +70,7 @@ public class PhoneConnection implements Runnable {
             }
         } catch (Exception e) {
             System.out.println("Could not connect/lost connection");
-            phone = new Phone(); //VARFÖR FUNGERAR INTE DENNA JÄVULEN.
+             Com.restartPhone(); //VARFÖR FUNGERAR INTE DENNA JÄVULEN
             e.printStackTrace();
         } finally {
             output_phone.close();
@@ -88,7 +88,7 @@ public class PhoneConnection implements Runnable {
         }
     }
 
-    public Socket getClient_socket() {
+    public  Socket getClient_socket() {
         return client_socket;
     }
 }

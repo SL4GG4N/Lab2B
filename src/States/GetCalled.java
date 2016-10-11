@@ -32,6 +32,7 @@ public class GetCalled implements PhoneState {
             phoneConnection.SendMessage("BUSY");
             phoneConnection.EndSession();
         }
+
         return this;
     }
 
@@ -57,6 +58,12 @@ public class GetCalled implements PhoneState {
         GÅ IN I STREAMING
          */
         //connection.SendMessage("kuken");
+        if (!phoneConnection.getClient_socket().equals(connection.getClient_socket())){
+            phoneConnection.SendMessage("BUSY");
+            phoneConnection.EndSession();
+            return this;
+        }
+
         return new Streaming(connection);
     }
 

@@ -14,7 +14,7 @@ public class Com {
     private static boolean running;
     private final int _PORT;
     private PhoneConnection connection;
-    private Phone phone;
+    private static Phone phone;
     private ServerSocket server_socket;
 
     public Com(int _PORT) {
@@ -25,7 +25,7 @@ public class Com {
         Open();
     }
 
-    public void Open() {
+    private void Open() {
 
         try {
             server_socket = new ServerSocket(_PORT);
@@ -58,8 +58,9 @@ public class Com {
 
     }
 
-
-
+    public static void restartPhone(){
+        phone = new Phone();
+    }
 
 
 }
