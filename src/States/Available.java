@@ -55,6 +55,7 @@ public class Available implements PhoneState {
         //bygga upp TRO-meddelandet
         AudioStreamUDP audioStreamUDP = null;
         try {
+            System.out.println("CALLER: " + phoneConnection.getStateMessage().getIp_caller());
             audioStreamUDP = new AudioStreamUDP();
             audioStreamUDP.connectTo(InetAddress.getByName(
                     phoneConnection.getStateMessage().getIp_caller()),
