@@ -45,7 +45,7 @@ public class Calling implements PhoneState {
         if (phoneConnection.equals(connection)) {
             try {
                 connection.getAudio().connectTo(InetAddress.getByName(
-                        phoneConnection.getStateMessage().getIp_from()),
+                        phoneConnection.getStateMessage().getIp_reciever()),
                         phoneConnection.getStateMessage().getVoice_port());
                 connection.getAudio().startStreaming();
                 connection.SendMessage("ACK");

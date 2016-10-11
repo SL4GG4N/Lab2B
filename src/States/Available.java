@@ -6,8 +6,6 @@ import FLum.PhoneConnection;
 
 import java.io.IOException;
 import java.net.InetAddress;
-import java.net.Socket;
-import java.sql.Connection;
 
 /**
  * Created by Eddie on 2016-10-05.
@@ -37,7 +35,7 @@ public class Available implements PhoneState {
             phoneConnection.setAudio(audioStreamUDP);
             String invite = "INVITE " + "EXAMPLE " + "EXAMPLE " +
                     phoneConnection.getClient_socket().getInetAddress() + " " +
-                    phoneConnection.getClient_socket().getInetAddress().getHostAddress() + " " +
+                    phoneConnection.getClient_socket().getLocalAddress() + " " +
                     audioStreamUDP.getLocalPort();
             phoneConnection.SendMessage(invite);
         } catch (IOException e) {
@@ -59,12 +57,12 @@ public class Available implements PhoneState {
         try {
             audioStreamUDP = new AudioStreamUDP();
             audioStreamUDP.connectTo(InetAddress.getByName(
-                    phoneConnection.getStateMessage().getIp_from()),
+                    phoneConnection.getStateMessage().getIp_caller()),
                     phoneConnection.getStateMessage().getVoice_port());
             phoneConnection.setAudio(audioStreamUDP);
             String tro = "TRO " + "EXAMPLE " + "EXAMPLE " +
-                    phoneConnection.getClient_socket().getInetAddress()+ " " +
-                    phoneConnection.getClient_socket().getInetAddress().getHostAddress() + " " +
+                    phoneConnection.getStateMessage().getIp_caller() + " " +
+                    phoneConnection.getStateMessage().getIp_reciever() + " " +
                     audioStreamUDP.getLocalPort();
             phoneConnection.SendMessage(tro);
         } catch (IOException e) {

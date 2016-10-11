@@ -7,8 +7,8 @@ public class StateMessage {
     private String signal = "";
     private String sip_to = "";
     private String sip_from = "";
-    private String ip_to = "";
-    private String ip_from = "";
+    private String ip_reciever = "";
+    private String ip_caller = "";
     private int voice_port = 0;
 
     public StateMessage(String msg) {
@@ -27,8 +27,8 @@ public class StateMessage {
         signal = splitted[0];
         sip_to = splitted[1];
         sip_from = splitted[2];
-        ip_to = splitted[3];
-        ip_from = splitted[4];
+        ip_reciever = splitted[3];
+        ip_caller = splitted[4];
         voice_port = Integer.parseInt(splitted[5]);
     }
 
@@ -44,12 +44,12 @@ public class StateMessage {
         return sip_from;
     }
 
-    public String getIp_to() {
-        return ip_to;
+    public String getIp_reciever() {
+        return ip_reciever;
     }
 
-    public String getIp_from() {
-        return ip_from;
+    public String getIp_caller() {
+        return ip_caller;
     }
 
     public int getVoice_port() {
@@ -68,12 +68,12 @@ public class StateMessage {
         this.sip_from = sip_from;
     }
 
-    public void setIp_to(String ip_to) {
-        this.ip_to = ip_to;
+    public void setIp_reciever(String ip_reciever) {
+        this.ip_reciever = ip_reciever;
     }
 
-    public void setIp_from(String ip_from) {
-        this.ip_from = ip_from;
+    public void setIp_caller(String ip_caller) {
+        this.ip_caller = ip_caller;
     }
 
     public void setVoice_port(int voice_port) {
