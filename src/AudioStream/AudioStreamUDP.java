@@ -27,6 +27,7 @@ public class AudioStreamUDP {
 
     public synchronized void connectTo(InetAddress remoteAddress, int remotePort)
             throws IOException {
+        System.out.println("Audiostream: " + remoteAddress);
         sender.connectTo(remoteAddress, remotePort);
         receiver.connectTo(remoteAddress);
     }
