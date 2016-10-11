@@ -60,9 +60,9 @@ public class GetCalled implements PhoneState {
          */
         //connection.SendMessage("kuken");
         if (phoneConnection.equals(connection)) {
+            connection.getAudio().startStreaming();
             return new Streaming(connection);
         }
-
         phoneConnection.SendMessage("BUSY");
         phoneConnection.EndSession();
         return this;

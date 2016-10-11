@@ -3,12 +3,16 @@ package States;
 
 import FLum.PhoneConnection;
 
+import java.io.IOException;
+import java.net.InetAddress;
+
 /**
  * Created by Eddie on 2016-10-05.
  */
 public class Calling implements PhoneState {
     private String stateName;
     private PhoneConnection connection;
+
     public Calling(PhoneConnection connection) {
         stateName = "CALLING";
         this.connection = connection;
@@ -38,10 +42,19 @@ public class Calling implements PhoneState {
         SKICKA ACK signal
          */
 
-        if (phoneConnection.equals(connection)){
-            connection.SendMessage("ACK");
-            return new Streaming(connection);
-        }else {
+        if (phoneConnection.equals(connection)) {
+            try {
+                connection.getAudio().connectTo(InetAddress.getByName(
+                        phoneConnection.getStateMessage().getIp_from()),
+                        phoneConnection.getStateMessage().getVoice_port());
+                connection.getAudio().startStreaming();
+                connection.SendMessage("ACK");
+                return new Streaming(connection);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return this;
+            }
+        } else {
             phoneConnection.SendMessage("BUSY");
             phoneConnection.EndSession();
         }

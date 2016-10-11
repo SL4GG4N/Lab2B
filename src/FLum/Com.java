@@ -20,7 +20,12 @@ public class Com {
     public Com(int _PORT) {
         this._PORT = _PORT;
         running = true;
-        phone = new Phone();
+        try {
+            phone = new Phone();
+        } catch (Exception e) {
+            System.out.println("COM HAS NO PHONE");
+            e.printStackTrace();
+        }
         server_socket = null;
         Open();
     }
@@ -37,10 +42,6 @@ public class Com {
                 // socket är satt här
                 Socket client_socket = server_socket.accept();
                 System.out.println("hello");
-                //lyssna efter meddelanden;
-
-                //skicka meddelandet till checkstates
-                //phone.CheckStates("INVITE", new PhoneConnection(client_socket));
                 //fixme set ringing mode so that no one can interrupt
                 connection = new PhoneConnection(client_socket,phone);
             }
@@ -58,7 +59,7 @@ public class Com {
 
     }
 
-    public static void restartPhone(){
+    public static void restartPhone()throws Exception{
         phone = new Phone();
     }
 

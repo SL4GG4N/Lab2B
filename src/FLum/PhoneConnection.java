@@ -1,5 +1,6 @@
 package FLum;
 
+import AudioStream.AudioStreamUDP;
 import PhoneContext.Phone;
 import States.Available;
 import States.PhoneState;
@@ -20,6 +21,7 @@ public class PhoneConnection implements Runnable {
     private boolean quit = false;
     private StateMessage stateMessage;
     private Phone phone;
+    private AudioStreamUDP audio;
 
     public PhoneConnection(Socket client_socket, Phone phone) {
         this.client_socket = client_socket;
@@ -57,6 +59,14 @@ public class PhoneConnection implements Runnable {
 
     }
 
+    public AudioStreamUDP getAudio() {
+        return audio;
+    }
+
+    public void setAudio(AudioStreamUDP audio) {
+        this.audio = audio;
+    }
+
     @Override
     public void run() {
         try {
@@ -72,7 +82,11 @@ public class PhoneConnection implements Runnable {
             }
         } catch (Exception e) {
             System.out.println("Could not connect/lost connection");
-             Com.restartPhone(); //VARFÖR FUNGERAR INTE DENNA JÄVULEN
+            try {
+                Com.restartPhone(); //VARFÖR FUNGERAR INTE DENNA JÄVULEN
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
             e.printStackTrace();
         } finally {
             output_phone.close();
@@ -96,5 +110,9 @@ public class PhoneConnection implements Runnable {
 
     public StateMessage getStateMessage() {
         return stateMessage;
+    }
+
+    public void setStateMessage(StateMessage stateMessage){
+        this.stateMessage = stateMessage;
     }
 }

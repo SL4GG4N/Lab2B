@@ -14,6 +14,8 @@ public class UserInterface implements Runnable {
     private Phone phone;
     private boolean shut_down = false;
     private PhoneConnection connection;
+    private String calling_ip;
+    private int _port;
 
     public UserInterface(Phone phone,PhoneConnection connection) {
         this.connection = connection;
@@ -23,6 +25,7 @@ public class UserInterface implements Runnable {
 
     @Override
     public void run() {
+        System.out.println("running interface");
         Scanner input = new Scanner(System.in);
         while (!shut_down) {
 
@@ -33,11 +36,16 @@ public class UserInterface implements Runnable {
                 shut_down = true;
             }else if (usr_text.toUpperCase().contains("CALL")){
                 try {
-                    usr_text = usr_text.substring(usr_text.lastIndexOf(" ") + 1);
-                    socket = new Socket(usr_text, 5005);
+                    String[] splitted = usr_text.split(" ");
+                    calling_ip = splitted[1];
+                    _port = Integer.parseInt(splitted[2]);
+                    socket = new Socket(calling_ip, _port);
+
                     System.out.println("SOCKET BUILDED");
                     connection = new PhoneConnection(socket, phone);
                     Thread.sleep(3000);
+
+                    connection.getStateMessage().setSignal("CALL");
                     phone.CheckStates(connection);
                 } catch (IOException e) {
                     System.out.println("USERINTERFACE:   Server is down or doesn't exist");
@@ -55,4 +63,5 @@ public class UserInterface implements Runnable {
 
 
     }
+
 }

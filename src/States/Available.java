@@ -1,8 +1,11 @@
 package States;
 
 
+import AudioStream.AudioStreamUDP;
 import FLum.PhoneConnection;
 
+import java.io.IOException;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.sql.Connection;
 
@@ -28,7 +31,19 @@ public class Available implements PhoneState {
         BYGG UPP ETT INVITE MEDDELANDE
          */
 
-        phoneConnection.SendMessage("INVITE");
+        AudioStreamUDP audioStreamUDP = null;
+        try {
+            audioStreamUDP = new AudioStreamUDP();
+            phoneConnection.setAudio(audioStreamUDP);
+            String invite = "INVITE " + "EXAMPLE " + "EXAMPLE " +
+                    phoneConnection.getClient_socket().getRemoteSocketAddress() + " " +
+                    phoneConnection.getClient_socket().getInetAddress().getHostAddress() + " " +
+                    audioStreamUDP.getLocalPort();
+            phoneConnection.SendMessage(invite);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return this;
+        }
         return new Calling(phoneConnection);
     }
 
@@ -40,8 +55,23 @@ public class Available implements PhoneState {
          */
         //skapa
         //bygga upp TRO-meddelandet
-
-
+        AudioStreamUDP audioStreamUDP = null;
+        try {
+            audioStreamUDP = new AudioStreamUDP();
+            audioStreamUDP.connectTo(InetAddress.getByName(
+                    phoneConnection.getStateMessage().getIp_from()),
+                    phoneConnection.getStateMessage().getVoice_port());
+            phoneConnection.setAudio(audioStreamUDP);
+            String tro = "TRO " + "EXAMPLE " + "EXAMPLE " +
+                    phoneConnection.getClient_socket().getRemoteSocketAddress() + " " +
+                    phoneConnection.getClient_socket().getInetAddress().getHostAddress() + " " +
+                    audioStreamUDP.getLocalPort();
+            phoneConnection.SendMessage(tro);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return this;
+        }
+        phoneConnection.getStateMessage().getVoice_port();
         phoneConnection.SendMessage("TRO");
 
         //if we answer

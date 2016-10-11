@@ -9,7 +9,7 @@ public class StateMessage {
     private String sip_from = "";
     private String ip_to = "";
     private String ip_from = "";
-    private String voice_port = "";
+    private int voice_port = 0;
 
     public StateMessage(String msg) {
         split(msg);
@@ -29,7 +29,7 @@ public class StateMessage {
         sip_from = splitted[2];
         ip_to = splitted[3];
         ip_from = splitted[4];
-        voice_port = splitted[5];
+        voice_port = Integer.parseInt(splitted[5]);
     }
 
     public String getSignal() {
@@ -52,8 +52,32 @@ public class StateMessage {
         return ip_from;
     }
 
-    public String getVoice_port() {
+    public int getVoice_port() {
         return voice_port;
+    }
+
+    public void setSignal(String signal) {
+        this.signal = signal;
+    }
+
+    public void setSip_to(String sip_to) {
+        this.sip_to = sip_to;
+    }
+
+    public void setSip_from(String sip_from) {
+        this.sip_from = sip_from;
+    }
+
+    public void setIp_to(String ip_to) {
+        this.ip_to = ip_to;
+    }
+
+    public void setIp_from(String ip_from) {
+        this.ip_from = ip_from;
+    }
+
+    public void setVoice_port(int voice_port) {
+        this.voice_port = voice_port;
     }
 }
 
