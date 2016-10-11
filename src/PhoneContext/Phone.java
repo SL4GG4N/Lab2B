@@ -14,14 +14,13 @@ import java.net.Socket;
  * Created by Eddie on 2016-10-06.
  */
 public class Phone {
-    private PhoneState current;
+    private static PhoneState current;
 
-
-    public Phone() throws Exception {
+    public Phone(){
         current = new Available();
     }
 
-    public synchronized void CheckStates(PhoneConnection phoneConnection) {
+    public static synchronized void CheckStates(PhoneConnection phoneConnection) {
         switch (phoneConnection.getStateMessage().getSignal()) {
             //VÄRLDENS STÖRSTA BUGG i SWITCH CASE satsen.
             case "STATE":
@@ -48,12 +47,15 @@ public class Phone {
             case "OK":
                 current = current.RecieveOk(phoneConnection);
                 break;
+            case "ERROR":
+                current = current.Error(phoneConnection);
+                break;
             default:
                 phoneConnection.EndSession();
         }
     }
 
-    public PhoneState getCurrent() {
+    public static PhoneState getCurrent() {
         return current;
     }
 }

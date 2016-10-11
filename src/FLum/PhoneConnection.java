@@ -20,12 +20,12 @@ public class PhoneConnection implements Runnable {
     private Socket client_socket = null;
     private boolean quit = false;
     private StateMessage stateMessage;
-    private Phone phone;
+    //private Phone phone;
     private AudioStreamUDP audio;
 
-    public PhoneConnection(Socket client_socket, Phone phone) {
+    public PhoneConnection(Socket client_socket) {
         this.client_socket = client_socket;
-        this.phone = phone;
+        //this.phone = phone;
         new Thread(this).start();
     }
 
@@ -78,9 +78,9 @@ public class PhoneConnection implements Runnable {
                 //System.out.println(userInput);
                 System.out.println("RECEIVE: " + user_input);
                 stateMessage = new StateMessage(user_input);
-                phone.CheckStates(this);
+                Phone.CheckStates(this);
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.out.println("Could not connect/lost connection");
             e.printStackTrace();
         } finally {
@@ -89,19 +89,16 @@ public class PhoneConnection implements Runnable {
             try {
                 input_phone.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                //e.printStackTrace();
             }
             try {
                 client_socket.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            try {
-                Com.restartPhone();
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            }
             System.out.println("ClientHandler closed connection");
+            stateMessage = new StateMessage("ERROR");
+            Phone.CheckStates(this);
         }
     }
 

@@ -101,6 +101,11 @@ public class Available implements PhoneState {
     public PhoneState RecieveOk(PhoneConnection phoneConnection) {
         return this;
     }
+
+    @Override
+    public PhoneState Error(PhoneConnection phoneConnection) {
+        return this;
+    }
 }
 
 //exempel på meddelande INVITE

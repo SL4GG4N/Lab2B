@@ -11,14 +11,15 @@ import java.util.Scanner;
  */
 public class UserInterface implements Runnable {
 
-    private Phone phone;
+    //private Phone phone;
     private boolean shut_down = false;
     private PhoneConnection connection;
     private String calling_ip;
     private int _port;
 
-    public UserInterface(Phone phone) {
-        this.phone = phone;
+    public UserInterface(PhoneConnection connection) {
+        //this.phone = phone;
+        this.connection = connection;
         new Thread(this).start();
     }
 
@@ -41,11 +42,11 @@ public class UserInterface implements Runnable {
                     socket = new Socket(calling_ip, _port);
 
                     System.out.println("SOCKET BUILDED");
-                    connection = new PhoneConnection(socket, phone);
+                    connection = new PhoneConnection(socket);
                     Thread.sleep(3000);
 
                     connection.setStateMessage(new StateMessage("CALL"));
-                    phone.CheckStates(connection);
+                    Phone.CheckStates(connection);
                 } catch (IOException e) {
                     System.out.println("USERINTERFACE:   Server is down or doesn't exist");
                     e.printStackTrace();

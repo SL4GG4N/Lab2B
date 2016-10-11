@@ -76,4 +76,13 @@ public class GetCalled implements PhoneState {
     public PhoneState RecieveOk(PhoneConnection phoneConnection) {
         return this;
     }
+
+    @Override
+    public PhoneState Error(PhoneConnection phoneConnection) {
+        System.out.println("BAKSDKAJSDKJAEW");
+        if (connection.getClient_socket().getPort()!=(phoneConnection.getClient_socket().getPort())){
+            return this;
+        }
+        return new Available();
+    }
 }

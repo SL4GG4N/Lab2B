@@ -14,4 +14,5 @@ public interface PhoneState {
     PhoneState Ok(PhoneConnection phoneConnection);
     PhoneState RecieveAck(PhoneConnection phoneConnection);
     PhoneState RecieveOk(PhoneConnection phoneConnection);
+    PhoneState Error(PhoneConnection phoneConnection);
 }
