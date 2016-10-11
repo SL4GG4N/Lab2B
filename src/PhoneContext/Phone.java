@@ -17,7 +17,6 @@ public class Phone {
     private PhoneState current;
 
 
-
     public Phone() throws Exception {
         current = new Available();
     }
@@ -56,10 +55,5 @@ public class Phone {
 
     public PhoneState getCurrent() {
         return current;
-    }
-
-    public static String stringFromIndex(int index, String msg) {
-        String[] splitted = msg.split(" ");
-        return splitted[index];
     }
 }

@@ -17,8 +17,7 @@ public class UserInterface implements Runnable {
     private String calling_ip;
     private int _port;
 
-    public UserInterface(Phone phone,PhoneConnection connection) {
-        this.connection = connection;
+    public UserInterface(Phone phone) {
         this.phone = phone;
         new Thread(this).start();
     }
@@ -54,7 +53,7 @@ public class UserInterface implements Runnable {
                     e.printStackTrace();
                 }
             }else if (usr_text.toUpperCase().contains("BYE")) {
-                //phone.CheckStates("BYE",);
+
             }
         }
 

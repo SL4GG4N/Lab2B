@@ -36,7 +36,7 @@ public class Com {
             server_socket = new ServerSocket(_PORT);
             System.out.println("Phone created, waiting for socket accept....");
 
-            UserInterface ui = new UserInterface(phone, connection);
+            UserInterface ui = new UserInterface(phone);
 
             while (running) {
                 // socket är satt här

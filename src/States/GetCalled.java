@@ -16,6 +16,10 @@ public class GetCalled implements PhoneState {
         System.out.println("STATE: " + stateName);
     }
 
+    public PhoneConnection getConnection() {
+        return connection;
+    }
+
     public String getStateName() {
         return stateName;
     }

@@ -35,6 +35,10 @@ public class Calling implements PhoneState {
         return this;
     }
 
+    public PhoneConnection getConnection() {
+        return connection;
+    }
+
     @Override
     public PhoneState Ack(PhoneConnection phoneConnection) {
         /*TODO

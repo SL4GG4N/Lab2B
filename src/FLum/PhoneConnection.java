@@ -89,12 +89,6 @@ public class PhoneConnection implements Runnable {
             }
             e.printStackTrace();
         } finally {
-            output_phone.close();
-            try {
-                input_phone.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
             try {
                 client_socket.close();
             } catch (IOException e) {
