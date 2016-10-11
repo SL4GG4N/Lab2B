@@ -38,8 +38,14 @@ public class Calling implements PhoneState {
         SKICKA ACK signal
          */
 
-        connection.SendMessage("ACK");
-        return new Streaming(connection);
+        if (phoneConnection.equals(connection)){
+            connection.SendMessage("ACK");
+            return new Streaming(connection);
+        }else {
+            phoneConnection.SendMessage("BUSY");
+            phoneConnection.EndSession();
+        }
+        return this;
     }
 
     @Override

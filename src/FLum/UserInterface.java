@@ -38,7 +38,7 @@ public class UserInterface implements Runnable {
                     System.out.println("SOCKET BUILDED");
                     connection = new PhoneConnection(socket, phone);
                     Thread.sleep(3000);
-                    phone.CheckStates("CALL", connection);
+                    phone.CheckStates(connection);
                 } catch (IOException e) {
                     System.out.println("USERINTERFACE:   Server is down or doesn't exist");
                     e.printStackTrace();

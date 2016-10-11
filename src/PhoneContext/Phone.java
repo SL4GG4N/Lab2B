@@ -1,6 +1,7 @@
 package PhoneContext;
 
 import FLum.PhoneConnection;
+import FLum.StateMessage;
 import States.Available;
 import States.Calling;
 import States.PhoneState;
@@ -13,15 +14,13 @@ import java.net.Socket;
 public class Phone {
     private PhoneState current;
 
+
     public Phone(){
         current = new Available();
     }
 
-    public synchronized void CheckStates(String msg, PhoneConnection phoneConnection){
-
-
-
-        switch (msg){
+    public synchronized void CheckStates(PhoneConnection phoneConnection){
+        switch (phoneConnection.getStateMessage().getSignal()){
             //VÄRLDENS STÖRSTA BUGG i SWITCH CASE satsen.
             case "STATE":   System.out.println("CURRENT STATE: " + getCurrent().getStateName()); break;
             case "CALL":    current = current.Invite(phoneConnection); break;
@@ -37,5 +36,10 @@ public class Phone {
 
     public PhoneState getCurrent() {
         return current;
+    }
+
+    public static String stringFromIndex(int index,String msg){
+        String[] splitted = msg.split(" ");
+        return splitted[index];
     }
 }

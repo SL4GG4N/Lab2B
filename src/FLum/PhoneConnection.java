@@ -18,6 +18,7 @@ public class PhoneConnection implements Runnable {
     private BufferedReader input_phone;
     private Socket client_socket = null;
     private boolean quit = false;
+    private StateMessage stateMessage;
     private Phone phone;
 
     public PhoneConnection(Socket client_socket, Phone phone) {
@@ -66,7 +67,8 @@ public class PhoneConnection implements Runnable {
             while (!quit && (user_input = input_phone.readLine()) != null) {
                 //System.out.println(userInput);
                 System.out.println("RECEIVE: " + user_input);
-                phone.CheckStates(user_input, this);
+                stateMessage = new StateMessage(user_input);
+                phone.CheckStates(this);
             }
         } catch (Exception e) {
             System.out.println("Could not connect/lost connection");
@@ -90,5 +92,9 @@ public class PhoneConnection implements Runnable {
 
     public  Socket getClient_socket() {
         return client_socket;
+    }
+
+    public StateMessage getStateMessage() {
+        return stateMessage;
     }
 }

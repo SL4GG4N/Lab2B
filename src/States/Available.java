@@ -14,7 +14,7 @@ public class Available implements PhoneState {
 
     public Available() {
         stateName = "AVAILABLE";
-        //System.out.println("STATE: " + stateName);
+        System.out.println("STATE: " + stateName);
     }
 
     public String getStateName() {
@@ -25,6 +25,7 @@ public class Available implements PhoneState {
     public PhoneState Invite(PhoneConnection phoneConnection) {
         /* TODO
         SEND INVITE HÄR
+        BYGG UPP ETT INVITE MEDDELANDE
          */
 
         phoneConnection.SendMessage("INVITE");
@@ -39,6 +40,7 @@ public class Available implements PhoneState {
          */
         //skapa
         //bygga upp TRO-meddelandet
+
 
         phoneConnection.SendMessage("TRO");
 

@@ -9,6 +9,7 @@ import FLum.PhoneConnection;
 public class GetCalled implements PhoneState {
     private String stateName;
     private PhoneConnection connection;
+
     public GetCalled(PhoneConnection connection) {
         this.connection = connection;
         stateName = "GET CALLED";
@@ -28,7 +29,7 @@ public class GetCalled implements PhoneState {
     public PhoneState Tro(PhoneConnection phoneConnection) {
         //Todo check if the phone connection is the same.
 
-        if (!phoneConnection.getClient_socket().equals(connection.getClient_socket())){
+        if (!phoneConnection.getClient_socket().equals(connection.getClient_socket())) {
             phoneConnection.SendMessage("BUSY");
             phoneConnection.EndSession();
         }
@@ -58,13 +59,13 @@ public class GetCalled implements PhoneState {
         GÅ IN I STREAMING
          */
         //connection.SendMessage("kuken");
-        if (!phoneConnection.getClient_socket().equals(connection.getClient_socket())){
-            phoneConnection.SendMessage("BUSY");
-            phoneConnection.EndSession();
-            return this;
+        if (phoneConnection.equals(connection)) {
+            return new Streaming(connection);
         }
 
-        return new Streaming(connection);
+        phoneConnection.SendMessage("BUSY");
+        phoneConnection.EndSession();
+        return this;
     }
 
     @Override
