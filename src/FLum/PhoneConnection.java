@@ -82,17 +82,24 @@ public class PhoneConnection implements Runnable {
             }
         } catch (Exception e) {
             System.out.println("Could not connect/lost connection");
-            try {
-                Com.restartPhone(); //VARFÖR FUNGERAR INTE DENNA JÄVULEN
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            }
             e.printStackTrace();
         } finally {
+            output_phone.close();
+
+            try {
+                input_phone.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             try {
                 client_socket.close();
             } catch (IOException e) {
                 e.printStackTrace();
+            }
+            try {
+                Com.restartPhone();
+            } catch (Exception e1) {
+                e1.printStackTrace();
             }
             System.out.println("ClientHandler closed connection");
         }
