@@ -7,8 +7,10 @@ import FLum.PhoneConnection;
  */
 public class WaitForOk implements PhoneState {
     private String stateName;
-    public WaitForOk() {
+    private PhoneConnection connection;
+    public WaitForOk(PhoneConnection connection) {
         stateName = "WAIT FOR OK";
+        this.connection = connection;
         System.out.println("STATE: " + stateName);
     }
 
@@ -52,6 +54,8 @@ public class WaitForOk implements PhoneState {
     @Override
     public PhoneState RecieveOk(PhoneConnection phoneConnection) {
         // vi får in en OK
+        connection.getAudio().close();
+        connection.EndSession();
         return new Available();
     }
 }

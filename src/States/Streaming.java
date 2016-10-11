@@ -44,7 +44,8 @@ public class Streaming implements PhoneState {
         SKICKA BYE SIGNAL
          */
         phoneConnection.SendMessage("BYE");
-        return new WaitForOk();
+        connection.getAudio().stopStreaming();
+        return new WaitForOk(connection);
     }
 
     @Override
@@ -53,8 +54,10 @@ public class Streaming implements PhoneState {
         OM VI FÅR EN BYE
         SKICKA EN OK
         */
-
         connection.SendMessage("OK");
+        connection.getAudio().stopStreaming();
+        connection.getAudio().close();
+        connection.EndSession();
         return new Available();
     }
 
