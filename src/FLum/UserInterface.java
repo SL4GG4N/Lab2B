@@ -29,12 +29,12 @@ public class UserInterface implements Runnable {
         Scanner input = new Scanner(System.in);
         while (!shut_down) {
 
-           // System.out.print("Call <NUMBER>: ");
+            // System.out.print("Call <NUMBER>: ");
             String usr_text = input.nextLine();
             Socket socket = null;
-            if (usr_text.toUpperCase().equals("SHUTDOWN")){
+            if (usr_text.toUpperCase().equals("SHUTDOWN")) {
                 shut_down = true;
-            }else if (usr_text.toUpperCase().contains("CALL")){
+            } else if (usr_text.toUpperCase().contains("CALL")) {
                 try {
                     String[] splitted = usr_text.split(" ");
                     calling_ip = splitted[1];
@@ -53,7 +53,14 @@ public class UserInterface implements Runnable {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            }else if (usr_text.toUpperCase().contains("BYE")) {
+            } else if (usr_text.toUpperCase().contains("BYE")) {
+
+
+                PhoneConnection phoneConnection = new PhoneConnection(null);
+                phoneConnection.setIfUser(true);
+                Phone.CheckStates(phoneConnection);
+                phoneConnection = null;
+
 
             }
         }

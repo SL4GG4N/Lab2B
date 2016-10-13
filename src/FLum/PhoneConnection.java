@@ -20,6 +20,8 @@ public class PhoneConnection implements Runnable {
     private Socket client_socket = null;
     private boolean quit = false;
     private StateMessage stateMessage;
+    private boolean ifUser = false;
+
     //private Phone phone;
     private AudioStreamUDP audio;
 
@@ -112,5 +114,14 @@ public class PhoneConnection implements Runnable {
 
     public void setStateMessage(StateMessage stateMessage){
         this.stateMessage = stateMessage;
+    }
+
+
+    public void setIfUser(boolean ifUser) {
+        this.ifUser = ifUser;
+    }
+
+    public boolean getIfUser() {
+        return ifUser;
     }
 }
