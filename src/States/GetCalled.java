@@ -1,7 +1,7 @@
 package States;
 
 
-import FLum.PhoneConnection;
+import Connection.PhoneConnection;
 
 /**
  * Created by Eddie on 2016-10-05.

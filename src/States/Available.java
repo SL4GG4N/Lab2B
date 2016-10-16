@@ -2,7 +2,7 @@ package States;
 
 
 import AudioStream.AudioStreamUDP;
-import FLum.PhoneConnection;
+import Connection.PhoneConnection;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -107,6 +107,3 @@ public class Available implements PhoneState {
         return this;
     }
 }
-
-//exempel på meddelande INVITE
-// INVITE?SENDERHOSTNAME?RECIEVERHOSTNAME?PORT

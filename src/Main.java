@@ -1,8 +1,5 @@
 
-import FLum.Com;
-import PhoneContext.Phone;
-import States.Available;
-import States.PhoneState;
+import Connection.Server;
 
 import java.util.Scanner;
 
@@ -15,7 +12,7 @@ public class Main {
 
         System.out.print("Enter Server Port: ");
         Scanner input = new Scanner(System.in);
-        Com com = new Com(Integer.parseInt(input.nextLine()));
+        Server com = new Server(Integer.parseInt(input.nextLine()));
 
     }
 }

@@ -1,7 +1,7 @@
 package States;
 
 
-import FLum.PhoneConnection;
+import Connection.PhoneConnection;
 
 import java.io.IOException;
 import java.net.InetAddress;

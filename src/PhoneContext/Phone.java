@@ -1,25 +1,20 @@
 package PhoneContext;
 
-import AudioStream.AudioStreamUDP;
-import FLum.PhoneConnection;
-import FLum.StateMessage;
+import Connection.PhoneConnection;
 import States.Available;
-import States.Calling;
 import States.PhoneState;
-
-import java.io.IOException;
-import java.net.Socket;
 
 /**
  * Created by Eddie on 2016-10-06.
  */
 public class Phone {
     private static PhoneState current;
+    private PhoneConnection connection;
 
     public Phone(){
         current = new Available();
+        connection = null;
     }
-
     public static synchronized void CheckStates(PhoneConnection phoneConnection) {
         switch (phoneConnection.getStateMessage().getSignal()) {
             //VÄRLDENS STÖRSTA BUGG i SWITCH CASE satsen.

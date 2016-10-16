@@ -1,9 +1,8 @@
-package FLum;
+package Connection;
 
 import AudioStream.AudioStreamUDP;
 import PhoneContext.Phone;
-import States.Available;
-import States.PhoneState;
+import PhoneContext.StateMessage;
 
 import java.io.BufferedReader;
 import java.io.IOException;

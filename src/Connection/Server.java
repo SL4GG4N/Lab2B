@@ -1,5 +1,6 @@
-package FLum;
+package Connection;
 
+import Interface.UserInterface;
 import PhoneContext.Phone;
 
 import java.io.*;
@@ -9,14 +10,14 @@ import java.net.Socket;
 /**
  * Created by Eddie on 2016-10-07.
  */
-public class Com {
+public class Server {
     //private static ArrayList<ClientHandler> clientHandlers;
     private static boolean running;
     private final int _PORT;
     private PhoneConnection connection;
     private ServerSocket server_socket;
 
-    public Com(int _PORT) {
+    public Server(int _PORT) {
         this._PORT = _PORT;
         running = true;
         server_socket = null;

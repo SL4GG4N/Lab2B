@@ -1,5 +1,7 @@
-package FLum;
+package Interface;
 
+import Connection.PhoneConnection;
+import PhoneContext.StateMessage;
 import PhoneContext.Phone;
 
 import java.io.IOException;
@@ -28,8 +30,6 @@ public class UserInterface implements Runnable {
         System.out.println("running interface");
         Scanner input = new Scanner(System.in);
         while (!shut_down) {
-
-            // System.out.print("Call <NUMBER>: ");
             String usr_text = input.nextLine();
             Socket socket = null;
             if (usr_text.toUpperCase().equals("SHUTDOWN")) {
@@ -54,20 +54,11 @@ public class UserInterface implements Runnable {
                     e.printStackTrace();
                 }
             } else if (usr_text.toUpperCase().contains("BYE")) {
-
-
-                PhoneConnection phoneConnection = new PhoneConnection(null,true);
-                Phone.CheckStates(phoneConnection);
-                phoneConnection = null;
-
-
+                Phone.CheckStates(new PhoneConnection(null,true));
             }
         }
-
         System.out.println("Client Exits");
         System.exit(1);
-
-
     }
 
 }
