@@ -26,7 +26,6 @@ public class Com {
 
     private void Open() {
 
-
         try {
             server_socket = new ServerSocket(_PORT);
         } catch (IOException e) {

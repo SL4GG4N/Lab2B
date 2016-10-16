@@ -11,7 +11,7 @@ import java.util.Scanner;
  */
 public class UserInterface implements Runnable {
 
-    //private Phone phone;
+
     private boolean shut_down = false;
     private PhoneConnection connection;
     private String calling_ip;

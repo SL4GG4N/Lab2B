@@ -38,19 +38,7 @@ public class PhoneConnection implements Runnable {
     }
 
     public void EndSession(){
-
-
         quit = true;
-
-        /*if (input_phone != null){
-            try {
-
-                input_phone.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }*/
-
     }
 
     public void SendMessage(String msg) {

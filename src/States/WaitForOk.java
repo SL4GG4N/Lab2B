@@ -8,6 +8,7 @@ import FLum.PhoneConnection;
 public class WaitForOk implements PhoneState {
     private String stateName;
     private PhoneConnection connection;
+
     public WaitForOk(PhoneConnection connection) {
         stateName = "WAIT FOR OK";
         this.connection = connection;
@@ -29,10 +30,6 @@ public class WaitForOk implements PhoneState {
         phoneConnection.SendMessage("BUSY");
         phoneConnection.EndSession();
         return this;
-    }
-
-    public PhoneConnection getConnection() {
-        return connection;
     }
 
     @Override
@@ -58,6 +55,8 @@ public class WaitForOk implements PhoneState {
     @Override
     public PhoneState RecieveOk(PhoneConnection phoneConnection) {
         // vi får in en OK
+
+        connection.getAudio().stopStreaming();
         connection.getAudio().close();
         connection.EndSession();
         return new Available();
