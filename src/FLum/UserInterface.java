@@ -56,8 +56,7 @@ public class UserInterface implements Runnable {
             } else if (usr_text.toUpperCase().contains("BYE")) {
 
 
-                PhoneConnection phoneConnection = new PhoneConnection(null);
-                phoneConnection.setIfUser(true);
+                PhoneConnection phoneConnection = new PhoneConnection(null,true);
                 Phone.CheckStates(phoneConnection);
                 phoneConnection = null;
 

@@ -30,27 +30,27 @@ public class PhoneConnection implements Runnable {
         //this.phone = phone;
         new Thread(this).start();
     }
+    public PhoneConnection(Socket client_socket, boolean isUser) {
+        this.client_socket = client_socket;
+        this.ifUser = isUser;
+        stateMessage = new StateMessage("BYE");
+
+    }
 
     public void EndSession(){
-        if (output_phone != null) {
-            output_phone.close();
-        }
 
-        if (input_phone != null){
+
+        quit = true;
+
+        /*if (input_phone != null){
             try {
+
                 input_phone.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
 
-        if (client_socket != null){
-            try {
-                client_socket.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     public void SendMessage(String msg) {
@@ -68,6 +68,7 @@ public class PhoneConnection implements Runnable {
     public void setAudio(AudioStreamUDP audio) {
         this.audio = audio;
     }
+
 
     @Override
     public void run() {
@@ -103,6 +104,7 @@ public class PhoneConnection implements Runnable {
             Phone.CheckStates(this);
         }
     }
+
 
     public  Socket getClient_socket() {
         return client_socket;

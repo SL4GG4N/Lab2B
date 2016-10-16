@@ -9,6 +9,7 @@ import FLum.PhoneConnection;
 public class Streaming implements PhoneState {
     private String stateName;
     private PhoneConnection connection;
+
     public Streaming(PhoneConnection connection) {
         this.connection = connection;
         stateName = "STREAMING";
@@ -22,7 +23,6 @@ public class Streaming implements PhoneState {
 
     @Override
     public PhoneState Invite(PhoneConnection phoneConnection) {
-
         return this;
     }
 
@@ -31,10 +31,6 @@ public class Streaming implements PhoneState {
         phoneConnection.SendMessage("BUSY");
         phoneConnection.EndSession();
         return this;
-    }
-
-    public PhoneConnection getConnection() {
-        return connection;
     }
 
     @Override
@@ -63,8 +59,8 @@ public class Streaming implements PhoneState {
         */
         connection.SendMessage("OK");
         connection.getAudio().stopStreaming();
-        connection.getAudio().close();
         connection.EndSession();
+        connection.getAudio().close();
         return new Available();
     }
 
@@ -80,7 +76,7 @@ public class Streaming implements PhoneState {
 
     @Override
     public PhoneState Error(PhoneConnection phoneConnection) {
-        System.out.println("BAKSDKAJSDKJAEW");
+
         if (connection.getClient_socket().getPort()!=(phoneConnection.getClient_socket().getPort())){
             return this;
         }
