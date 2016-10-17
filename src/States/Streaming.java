@@ -23,7 +23,11 @@ public class Streaming implements PhoneState {
 
     @Override
     public PhoneState Invite(PhoneConnection phoneConnection) {
-        return this;
+        phoneConnection.EndSession();
+        if (phoneConnection.equals(connection)){
+            return new Available();
+        }
+        else return this;
     }
 
     @Override
@@ -35,7 +39,11 @@ public class Streaming implements PhoneState {
 
     @Override
     public PhoneState Ack(PhoneConnection phoneConnection) {
-        return this;
+        phoneConnection.EndSession();
+        if (phoneConnection.equals(connection)){
+            return new Available();
+        }
+        else return this;
     }
 
     @Override
@@ -73,12 +81,20 @@ public class Streaming implements PhoneState {
 
     @Override
     public PhoneState RecieveAck(PhoneConnection phoneConnection) {
-        return this;
+        phoneConnection.EndSession();
+        if (phoneConnection.equals(connection)){
+            return new Available();
+        }
+        else return this;
     }
 
     @Override
     public PhoneState RecieveOk(PhoneConnection phoneConnection) {
-        return this;
+        phoneConnection.EndSession();
+        if (phoneConnection.equals(connection)){
+            return new Available();
+        }
+        else return this;
     }
 
     @Override
