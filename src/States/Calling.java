@@ -72,7 +72,13 @@ public class Calling implements PhoneState {
 
     @Override
     public PhoneState Ok(PhoneConnection phoneConnection) {
-        return this;
+        if(phoneConnection.equals(connection)){
+            connection.EndSession();
+            return new Available();
+        }else {
+            phoneConnection.EndSession();
+            return this;
+        }
     }
 
     @Override
