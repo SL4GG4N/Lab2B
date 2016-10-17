@@ -35,13 +35,7 @@ public class Streaming implements PhoneState {
 
     @Override
     public PhoneState Ack(PhoneConnection phoneConnection) {
-        if (phoneConnection.equals(connection)) {
-            phoneConnection.EndSession();
-            return new Available();
-        }
-        else{
-            phoneConnection.EndSession();
-        }return this;
+        return this;
     }
 
     @Override
@@ -51,6 +45,7 @@ public class Streaming implements PhoneState {
          */
 
         if(!phoneConnection.getIfUser()){
+            System.out.printf("BÖGEN i KUKEN");
             return this;
         }
         connection.SendMessage("BYE");
@@ -64,7 +59,8 @@ public class Streaming implements PhoneState {
         OM VI FÅR EN BYE
         SKICKA EN OK
         */
-        if(!connection.equals(phoneConnection)){
+        if(connection.equals(phoneConnection)){
+            System.out.printf("BÖGEN i KUKEN");
             return this;
         }
         connection.SendMessage("OK");
@@ -76,24 +72,12 @@ public class Streaming implements PhoneState {
 
     @Override
     public PhoneState RecieveAck(PhoneConnection phoneConnection) {
-        if (phoneConnection.equals(connection)) {
-            phoneConnection.EndSession();
-            return new Available();
-        }
-        else{
-            phoneConnection.EndSession();
-        }return this;
+        return this;
     }
 
     @Override
     public PhoneState RecieveOk(PhoneConnection phoneConnection) {
-        if (phoneConnection.equals(connection)) {
-            phoneConnection.EndSession();
-            return new Available();
-        }
-        else{
-            phoneConnection.EndSession();
-        }return this;
+        return this;
     }
 
     @Override
