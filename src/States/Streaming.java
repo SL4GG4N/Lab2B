@@ -45,7 +45,7 @@ public class Streaming implements PhoneState {
          */
 
         if(!phoneConnection.getIfUser()){
-            System.out.printf("BÖGEN i KUKEN");
+            //System.out.printf("BÖGEN i KUKEN");
             return this;
         }
         connection.SendMessage("BYE");
@@ -60,7 +60,7 @@ public class Streaming implements PhoneState {
         SKICKA EN OK
         */
         if(connection.equals(phoneConnection)){
-            System.out.printf("BÖGEN i KUKEN");
+            //System.out.printf("BÖGEN i KUKEN");
             return this;
         }
         connection.SendMessage("OK");

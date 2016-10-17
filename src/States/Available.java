@@ -79,37 +79,31 @@ public class Available implements PhoneState {
 
     @Override
     public PhoneState Ack(PhoneConnection phoneConnection) {
-        phoneConnection.EndSession();
-        return new Available();
+        return this;
     }
 
     @Override
     public PhoneState Bye(PhoneConnection phoneConnection) {
-        phoneConnection.EndSession();
-        return new Available();
+        return this;
     }
 
     @Override
     public PhoneState Ok(PhoneConnection phoneConnection) {
-        phoneConnection.EndSession();
-        return new Available();
+        return this;
     }
 
     @Override
     public PhoneState RecieveAck(PhoneConnection phoneConnection) {
-        phoneConnection.EndSession();
-        return new Available();
+        return this;
     }
 
     @Override
     public PhoneState RecieveOk(PhoneConnection phoneConnection) {
-        phoneConnection.EndSession();
-        return new Available();
+        return this;
     }
 
     @Override
     public PhoneState Error(PhoneConnection phoneConnection) {
-        phoneConnection.EndSession();
-        return new Available();
+        return this;
     }
 }

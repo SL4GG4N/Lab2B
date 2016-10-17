@@ -67,51 +67,28 @@ public class Calling implements PhoneState {
 
     @Override
     public PhoneState Bye(PhoneConnection phoneConnection) {
-        if (phoneConnection.equals(connection)) {
-            phoneConnection.EndSession();
-            return new Available();
-        }
-        else{
-            phoneConnection.EndSession();
-        }return this;
+        return this;
     }
 
     @Override
     public PhoneState Ok(PhoneConnection phoneConnection) {
-        if (phoneConnection.equals(connection)) {
-            phoneConnection.EndSession();
-            return new Available();
-        }
-        else{
-            phoneConnection.EndSession();
-        }return this;
+        return this;
     }
 
     @Override
     public PhoneState RecieveAck(PhoneConnection phoneConnection) {
-        if (phoneConnection.equals(connection)) {
-            phoneConnection.EndSession();
-            return new Available();
-        }
-        else{
-            phoneConnection.EndSession();
-        }return this;
+        return this;
     }
 
     @Override
     public PhoneState RecieveOk(PhoneConnection phoneConnection) {
-        if (phoneConnection.equals(connection)) {
-            phoneConnection.EndSession();
-            return new Available();
-        }
-        else{
-            phoneConnection.EndSession();
-        }return this;
+        return this;
     }
 
     @Override
     public PhoneState Error(PhoneConnection phoneConnection) {
-        if (connection.getClient_socket().getPort() != (phoneConnection.getClient_socket().getPort())) {
+        System.out.println("BAKSDKAJSDKJAEW");
+        if (connection.getClient_socket().getPort()!=(phoneConnection.getClient_socket().getPort())){
             return this;
         }
         return new Available();

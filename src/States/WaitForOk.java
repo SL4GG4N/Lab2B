@@ -34,46 +34,22 @@ public class WaitForOk implements PhoneState {
 
     @Override
     public PhoneState Ack(PhoneConnection phoneConnection) {
-        if (phoneConnection.equals(connection)) {
-            phoneConnection.EndSession();
-            return new Available();
-        }
-        else{
-            phoneConnection.EndSession();
-        }return this;
+        return this;
     }
 
     @Override
     public PhoneState Bye(PhoneConnection phoneConnection) {
-        if (phoneConnection.equals(connection)) {
-            phoneConnection.EndSession();
-            return new Available();
-        }
-        else{
-            phoneConnection.EndSession();
-        }return this;
+        return this;
     }
 
     @Override
     public PhoneState Ok(PhoneConnection phoneConnection) {
-        if (phoneConnection.equals(connection)) {
-            phoneConnection.EndSession();
-            return new Available();
-        }
-        else{
-            phoneConnection.EndSession();
-        }return this;
+        return this;
     }
 
     @Override
     public PhoneState RecieveAck(PhoneConnection phoneConnection) {
-        if (phoneConnection.equals(connection)) {
-            phoneConnection.EndSession();
-            return new Available();
-        }
-        else{
-            phoneConnection.EndSession();
-        }return this;
+        return this;
     }
 
     @Override
@@ -88,6 +64,7 @@ public class WaitForOk implements PhoneState {
 
     @Override
     public PhoneState Error(PhoneConnection phoneConnection) {
+        System.out.println("BAKSDKAJSDKJAEW");
         if (connection.getClient_socket().getPort()!=(phoneConnection.getClient_socket().getPort())){
             return this;
         }
