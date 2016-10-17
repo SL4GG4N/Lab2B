@@ -32,7 +32,7 @@ public class PhoneConnection implements Runnable {
     public PhoneConnection(Socket client_socket, boolean isUser) {
         this.client_socket = client_socket;
         this.ifUser = isUser;
-        stateMessage = new StateMessage("BYE");
+        stateMessage = new StateMessage("CLOSE");
 
     }
 

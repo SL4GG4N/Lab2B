@@ -43,7 +43,9 @@ public class Streaming implements PhoneState {
         /* TODO
         SKICKA BYE SIGNAL
          */
-        if(!phoneConnection.equals(connection) || !phoneConnection.getIfUser()){
+
+        if(!phoneConnection.getIfUser()){
+            System.out.printf("BÖGEN i KUKEN");
             return this;
         }
         connection.SendMessage("BYE");
