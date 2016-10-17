@@ -70,7 +70,7 @@ public class Available implements PhoneState {
             return this;
         }
         phoneConnection.getStateMessage().getVoice_port();
-        phoneConnection.SendMessage("TRO");
+        //phoneConnection.SendMessage("TRO");
 
         //if we answer
         return new GetCalled(phoneConnection);
