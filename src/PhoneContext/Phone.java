@@ -15,11 +15,8 @@ public class Phone {
         current = new Available();
         connection = null;
     }
+
     public static synchronized void CheckStates(PhoneConnection phoneConnection) {
-
-        System.out.println("KUKEN: " +     phoneConnection.getStateMessage().getSignal());
-
-
         switch (phoneConnection.getStateMessage().getSignal()) {
             //VÄRLDENS STÖRSTA BUGG i SWITCH CASE satsen.
             case "STATE":

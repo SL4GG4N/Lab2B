@@ -44,7 +44,6 @@ public class Server {
                 connection = new PhoneConnection(client_socket);
             } catch (IOException e) {
                 e.printStackTrace();
-                System.out.println("kuken i fittan anus");
             }
         }
     }
