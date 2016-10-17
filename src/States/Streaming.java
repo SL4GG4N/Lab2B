@@ -59,6 +59,10 @@ public class Streaming implements PhoneState {
         OM VI FÅR EN BYE
         SKICKA EN OK
         */
+        if(!phoneConnection.getIfUser()){
+            System.out.printf("BÖGEN i KUKEN");
+            return this;
+        }
         connection.SendMessage("OK");
         connection.getAudio().stopStreaming();
         connection.EndSession();
