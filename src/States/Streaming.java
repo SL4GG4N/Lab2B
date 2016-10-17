@@ -59,7 +59,7 @@ public class Streaming implements PhoneState {
         OM VI FÅR EN BYE
         SKICKA EN OK
         */
-        if(!phoneConnection.getIfUser()){
+        if(connection.equals(phoneConnection)){
             System.out.printf("BÖGEN i KUKEN");
             return this;
         }
