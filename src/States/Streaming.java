@@ -46,7 +46,7 @@ public class Streaming implements PhoneState {
         if(!phoneConnection.equals(connection) || !phoneConnection.getIfUser()){
             return this;
         }
-        phoneConnection.SendMessage("BYE");
+        connection.SendMessage("BYE");
         connection.getAudio().stopStreaming();
         return new WaitForOk(connection);
     }
